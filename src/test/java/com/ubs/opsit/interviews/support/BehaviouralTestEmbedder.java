@@ -41,7 +41,6 @@ public final class BehaviouralTestEmbedder extends ConfigurableEmbedder {
         return new BehaviouralTestEmbedder();
     }
 
-    @Override
     public void run() throws Exception {
         List<String> paths = createStoryPaths();
         if (paths == null || paths.isEmpty()) {
