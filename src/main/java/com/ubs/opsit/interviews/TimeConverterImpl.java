@@ -58,61 +58,36 @@ public class TimeConverterImpl implements TimeConverter {
 
 	private String getSecondRowHours(int hours) {
 		int secondRowHours = (hours - (hours % 5)) / 5;
-		String temp = "";
-
-		for (int counter = 0; counter < secondRowHours; counter++) {
-			temp = temp + "R";
-		}
-
-		for (int counter = 0; counter < (4 - secondRowHours); counter++) {
-			temp = temp + "O";
-		}
-
-		return temp;
+		return getRequiredOutputCorrespondingToRow(secondRowHours, 4, "R");
 	}
 
 	private String getThirdRowHours(int hours) {
 		int thirdRowHours = hours % 5;
-		String temp = "";
-
-		for (int counter = 0; counter < thirdRowHours; counter++) {
-			temp = temp + "R";
-		}
-
-		for (int counter = 0; counter < (4 - thirdRowHours); counter++) {
-			temp = temp + "O";
-		}
-
-		return temp;
+		return getRequiredOutputCorrespondingToRow(thirdRowHours, 4, "R");
 	}
 
 	private String getFourthRowMinute(int minutes) {
-
 		int fourthRowMinutes = (minutes - (minutes % 5)) / 5;
-		String temp = "";
-
-		for (int counter = 0; counter < fourthRowMinutes; counter++) {
-			temp = temp + "Y";
-		}
-
-		for (int counter = 0; counter < (11 - fourthRowMinutes); counter++) {
-			temp = temp + "O";
-		}
-
+		String temp = getRequiredOutputCorrespondingToRow(fourthRowMinutes, 11,
+				"Y");
 		temp = temp.replaceAll("YYY", "YYR");
-
 		return temp;
 	}
 
 	private String getFifthRowMinutes(int minutes) {
 		int fifthRowMinutes = minutes % 5;
+		return getRequiredOutputCorrespondingToRow(fifthRowMinutes, 4, "Y");
+	}
+
+	private String getRequiredOutputCorrespondingToRow(int time,
+			int numberOfLamps, String flag) {
 		String temp = "";
 
-		for (int counter = 0; counter < fifthRowMinutes; counter++) {
-			temp = temp + "Y";
+		for (int counter = 0; counter < time; counter++) {
+			temp = temp + flag;
 		}
 
-		for (int counter = 0; counter < (4 - fifthRowMinutes); counter++) {
+		for (int counter = 0; counter < (numberOfLamps - time); counter++) {
 			temp = temp + "O";
 		}
 
